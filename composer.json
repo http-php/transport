@@ -1,0 +1,61 @@
+{
+  "name": "http-php/transport",
+  "description": "A PSR-18 client wrapper.",
+  "type": "library",
+  "license": "MIT",
+  "authors": [
+    {
+      "role": "Developer",
+      "name": "Steve McDougall",
+      "email": "juststevemcd@gmail.com",
+      "homepage": "https://www.juststeveking.uk/"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "HttpPHP\\Transport\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "HttpPHP\\Transport\\Tests\\": "tests/"
+    }
+  },
+  "require": {
+    "php": "^8.2",
+    "http-php/headers": "dev-main",
+    "http-php/messages": "dev-main",
+    "php-http/client-common": "^2.6",
+    "php-http/discovery": "^1.14.3",
+    "psr/http-client": "^1.0.1",
+    "psr/http-factory": "^1.0.1",
+    "thecodingmachine/safe": "^2.4"
+  },
+  "require-dev": {
+    "laravel/pint": "^1.4.1",
+    "pestphp/pest": "^1.22.4",
+    "phpstan/phpstan": "^1.9.14"
+  },
+  "scripts": {
+    "test": "./vendor/bin/pest",
+    "fix": "./vendor/bin/pint",
+    "check": "./vendor/bin/pint --test -v",
+    "static": "./vendor/bin/phpstan analyse",
+    "all": [
+      "@test",
+      "@fix",
+      "@check",
+      "@static"
+    ]
+  },
+  "minimum-stability": "dev",
+  "prefer-stable": true,
+  "config": {
+    "optimize-autoloader": true,
+    "preferred-install": "dist",
+    "sort-packages": true,
+    "allow-plugins": {
+      "pestphp/pest-plugin": true
+    }
+  }
+}
