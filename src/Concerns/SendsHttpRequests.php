@@ -20,7 +20,7 @@ trait SendsHttpRequests
      * Send a GET Request.
      *
      * @param string $uri
-     * @param array<int,HeaderContract> $headers
+     * @param array<int|string,HeaderContract> $headers
      * @return ResponseInterface
      */
     public function get(string $uri, array $headers = []): ResponseInterface
@@ -37,7 +37,7 @@ trait SendsHttpRequests
      *
      * @param string $uri
      * @param MessageContract $payload
-     * @param array<int,HeaderContract> $headers
+     * @param array<int|string,HeaderContract> $headers
      * @return ResponseInterface
      */
     public function post(string $uri, MessageContract $payload, array $headers = []): ResponseInterface
@@ -55,7 +55,7 @@ trait SendsHttpRequests
      *
      * @param string $uri
      * @param MessageContract $payload
-     * @param array<int,HeaderContract> $headers
+     * @param array<int|string,HeaderContract> $headers
      * @return ResponseInterface
      */
     public function put(string $uri, MessageContract $payload, array $headers = []): ResponseInterface
@@ -73,7 +73,7 @@ trait SendsHttpRequests
      *
      * @param string $uri
      * @param MessageContract $payload
-     * @param array<int,HeaderContract> $headers
+     * @param array<int|string,HeaderContract> $headers
      * @return ResponseInterface
      */
     public function patch(string $uri, MessageContract $payload, array $headers = []): ResponseInterface
@@ -90,7 +90,7 @@ trait SendsHttpRequests
      * Send a DELETE Request.
      *
      * @param string $uri
-     * @param array<int,HeaderContract> $headers
+     * @param array<int|string,HeaderContract> $headers
      * @return ResponseInterface
      */
     public function delete(string $uri, array $headers = []): ResponseInterface
@@ -106,7 +106,7 @@ trait SendsHttpRequests
      * Send an OPTIONS Request.
      *
      * @param string $uri
-     * @param array<int,HeaderContract> $headers
+     * @param array<int|string,HeaderContract> $headers
      * @return ResponseInterface
      */
     public function options(string $uri, array $headers = []): ResponseInterface
@@ -140,7 +140,7 @@ trait SendsHttpRequests
      * @param Method $method
      * @param string $uri
      * @param MessageContract|null $payload
-     * @param array<int,HeaderContract> $headers
+     * @param array<int|string,HeaderContract> $headers
      * @return ResponseInterface
      */
     public function send(Method $method, string $uri, null|MessageContract $payload = null, array $headers = []): ResponseInterface
@@ -155,15 +155,15 @@ trait SendsHttpRequests
          */
         foreach (array_merge($this->headers, $headers) as $header) {
             $request = $request->withAddedHeader(
-                name: $header->key(),
-                value: $header->value(),
+                $header->key(),
+                $header->value()->toString(),
             );
         }
 
         if (null !== $payload) {
             $request = $request->withBody(
                 body: $this->stream->createStream(
-                    content: $payload->payload()->body(),
+                    content: strval($payload->payload()?->body()),
                 ),
             );
         }

@@ -28,7 +28,8 @@ final class HttpClient implements HttpClientContract
         private readonly RequestFactoryInterface $request,
         private readonly StreamFactoryInterface $stream,
         private readonly array $headers = [],
-    ) {}
+    ) {
+    }
 
     /**
      * @param ClientInterface|null $client
@@ -45,8 +46,8 @@ final class HttpClient implements HttpClientContract
     ): HttpClientContract {
         return new HttpClient(
             client: $client ?? HttpClientDiscovery::find(),
-            request: $requestFactory ?? Psr17FactoryDiscovery::findRequestFactory(),
-            stream: $streamFactory ?? Psr17FactoryDiscovery::findStreamFactory(),
+            request: $request ?? Psr17FactoryDiscovery::findRequestFactory(),
+            stream: $stream ?? Psr17FactoryDiscovery::findStreamFactory(),
             headers: $headers,
         );
     }

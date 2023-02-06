@@ -25,16 +25,20 @@
     "php": "^8.2",
     "http-php/headers": "dev-main",
     "http-php/messages": "dev-main",
+    "juststeveking/http-status-code": "^3.0.2",
+    "nyholm/psr7": "^1.5.1",
     "php-http/client-common": "^2.6",
     "php-http/discovery": "^1.14.3",
     "psr/http-client": "^1.0.1",
     "psr/http-factory": "^1.0.1",
+    "symfony/http-client": "^6.2.6",
     "thecodingmachine/safe": "^2.4"
   },
   "require-dev": {
     "laravel/pint": "^1.4.1",
     "pestphp/pest": "^1.22.4",
-    "phpstan/phpstan": "^1.9.14"
+    "phpstan/phpstan": "^1.9.14",
+    "symfony/var-dumper": "^6.2.5"
   },
   "scripts": {
     "test": "./vendor/bin/pest",

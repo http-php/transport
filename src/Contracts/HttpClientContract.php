@@ -15,7 +15,7 @@ interface HttpClientContract
      * Send a GET Request.
      *
      * @param string $uri
-     * @param array<int,HeaderContract> $headers
+     * @param array<int|string,HeaderContract> $headers
      * @return ResponseInterface
      */
     public function get(string $uri, array $headers = []): ResponseInterface;
@@ -25,7 +25,7 @@ interface HttpClientContract
      *
      * @param string $uri
      * @param MessageContract $payload
-     * @param array<int,HeaderContract> $headers
+     * @param array<int|string,HeaderContract> $headers
      * @return ResponseInterface
      */
     public function post(string $uri, MessageContract $payload, array $headers = []): ResponseInterface;
@@ -35,7 +35,7 @@ interface HttpClientContract
      *
      * @param string $uri
      * @param MessageContract $payload
-     * @param array<int,HeaderContract> $headers
+     * @param array<int|string,HeaderContract> $headers
      * @return ResponseInterface
      */
     public function put(string $uri, MessageContract $payload, array $headers = []): ResponseInterface;
@@ -45,7 +45,7 @@ interface HttpClientContract
      *
      * @param string $uri
      * @param MessageContract $payload
-     * @param array<int,HeaderContract> $headers
+     * @param array<int|string,HeaderContract> $headers
      * @return ResponseInterface
      */
     public function patch(string $uri, MessageContract $payload, array $headers = []): ResponseInterface;
@@ -54,7 +54,7 @@ interface HttpClientContract
      * Send a DELETE Request.
      *
      * @param string $uri
-     * @param array<int,HeaderContract> $headers
+     * @param array<int|string,HeaderContract> $headers
      * @return ResponseInterface
      */
     public function delete(string $uri, array $headers = []): ResponseInterface;
@@ -63,7 +63,7 @@ interface HttpClientContract
      * Send an OPTIONS Request.
      *
      * @param string $uri
-     * @param array<int,HeaderContract> $headers
+     * @param array<int|string,HeaderContract> $headers
      * @return ResponseInterface
      */
     public function options(string $uri, array $headers = []): ResponseInterface;
@@ -72,7 +72,7 @@ interface HttpClientContract
      * Send a HEAD Request.
      *
      * @param string $uri
-     * @param array<int,HeaderContract> $headers
+     * @param array<int|string,HeaderContract> $headers
      * @return ResponseInterface
      */
     public function head(string $uri, array $headers = []): ResponseInterface;
@@ -83,7 +83,7 @@ interface HttpClientContract
      * @param Method $method
      * @param string $uri
      * @param MessageContract|null $payload
-     * @param array<int,HeaderContract> $headers
+     * @param array<int|string,HeaderContract> $headers
      * @return ResponseInterface
      */
     public function send(Method $method, string $uri, null|MessageContract $payload = null, array $headers = []): ResponseInterface;

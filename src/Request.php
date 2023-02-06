@@ -7,7 +7,6 @@ namespace HttpPHP\Transport;
 use HttpPHP\Messages\Contracts\MessageContract;
 use HttpPHP\Transport\Contracts\HttpClientContract;
 use HttpPHP\Transport\Enums\Method;
-use Psr\Http\Message\ResponseInterface;
 
 final class Request
 {
@@ -16,7 +15,8 @@ final class Request
         private readonly HttpClientContract $client,
         private null|MessageContract $message = null,
         private Method $method = Method::GET,
-    ) {}
+    ) {
+    }
 
     public static function build(
         string $uri,
@@ -32,13 +32,19 @@ final class Request
         );
     }
 
-    public function send(): ResponseInterface
+    public function send(): Response
     {
-        return $this->client->send(
+        $response = $this->client->send(
             method: $this->method,
             uri: $this->uri,
             payload: $this->message,
-            headers: $this->message->headers(),
+            headers: $this->message
+                ? $this->message->headers()
+                : [],
+        );
+
+        return Response::build(
+            response: $response,
         );
     }
 
